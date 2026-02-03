@@ -2,7 +2,7 @@ const canvas = document.getElementById("bgCanvas");
 const ctx = canvas.getContext("2d");
 
 const frameCount = 240;
-const images = [];
+const image = [];
 let loadedImages = 0;
 
 function resizeCanvas() {
@@ -12,7 +12,7 @@ function resizeCanvas() {
 resizeCanvas();
 window.addEventListener("resize", resizeCanvas);
 
-// Load images
+// Load image
 for (let i = 1; i <= frameCount; i++) {
   const img = new Image();
   const frameNumber = String(i).padStart(3, "0");
