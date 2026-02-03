@@ -1,55 +1,72 @@
-const canvas = document.getElementById("bgCanvas");
-const ctx = canvas.getContext("2d");
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Jothika | Mechanical Engineering Student</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
 
-const frameCount = 240;
-const images = [];
-let loadedImages = 0;
+  <!-- Background Animation -->
+  <canvas id="bgCanvas"></canvas>
 
-function resizeCanvas() {
-  canvas.width = window.innerWidth;
-  canvas.height = window.innerHeight;
-}
-resizeCanvas();
-window.addEventListener("resize", resizeCanvas);
+  <!-- Content -->
+  <main class="content">
 
-// Load images
-for (let i = 1; i <= frameCount; i++) {
-  const img = new Image();
-  const frameNumber = String(i).padStart(3, "0");
-  img.src = `images/ezgif-frame-${frameNumber}.jpg`;
-  img.onload = () => loadedImages++;
-  images.push(img);
-}
+    <section class="hero">
+      <h1>Jothika</h1>
+      <p class="subtitle">Mechanical Engineering Student</p>
+    </section>
 
-// Draw image centered
-function drawFrame(index) {
-  const img = images[index];
-  if (!img) return;
+    <section>
+      <h2>Profile</h2>
+      <p>
+        Mechanical engineering student. I consider myself a responsible and
+        orderly person. I am looking forward to my first work experience.
+      </p>
+    </section>
 
-  const scale = Math.max(
-    canvas.width / img.width,
-    canvas.height / img.height
-  );
+    <section>
+      <h2>Education</h2>
+      <p><strong>B.E – Mechanical Engineering</strong></p>
+      <p>Thanthi Pariyar Government Institute of Technology</p>
+      <p>2022 – 2026</p>
+    </section>
 
-  const x = (canvas.width - img.width * scale) / 2;
-  const y = (canvas.height - img.height * scale) / 2;
+    <section>
+      <h2>Internship Experience</h2>
+      <p><strong>Neyveli Lignite Corporation</strong></p>
+      <p>Thermal Power Station – I (Internship)</p>
+    </section>
 
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
-  ctx.drawImage(img, x, y, img.width * scale, img.height * scale);
-}
+    <section>
+      <h2>Computer Skills</h2>
+      <ul>
+        <li>Text Processing</li>
+        <li>Microsoft Tools</li>
+        <li>Slide Presentation</li>
+      </ul>
+    </section>
 
-// Scroll animation
-window.addEventListener("scroll", () => {
-  if (loadedImages < frameCount) return;
+    <section>
+      <h2>Languages</h2>
+      <ul>
+        <li>Tamil – Native</li>
+        <li>English – Advanced</li>
+      </ul>
+    </section>
 
-  const scrollTop = window.scrollY;
-  const maxScroll = document.body.scrollHeight - window.innerHeight;
-  const scrollFraction = scrollTop / maxScroll;
+    <section>
+      <h2>Contact</h2>
+      <p>📞 8838876714</p>
+      <p>📧 jothikajaisankar123@gmail.com</p>
+      <p>📍 Ranipet, Tamil Nadu</p>
+    </section>
 
-  const frameIndex = Math.min(
-    frameCount - 1,
-    Math.floor(scrollFraction * frameCount)
-  );
+  </main>
 
-  requestAnimationFrame(() => drawFrame(frameIndex));
-});
+  <script src="script.js"></script>
+</body>
+</html>
+
