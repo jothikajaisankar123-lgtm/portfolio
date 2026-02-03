@@ -1,55 +1,65 @@
-const canvas = document.getElementById("bgCanvas");
-const ctx = canvas.getContext("2d");
-
-const frameCount = 240;
-const image = [];
-let loadedImages = 0;
-
-function resizeCanvas() {
-  canvas.width = window.innerWidth;
-  canvas.height = window.innerHeight;
-}
-resizeCanvas();
-window.addEventListener("resize", resizeCanvas);
-
-// Load image
-for (let i = 1; i <= frameCount; i++) {
-  const img = new Image();
-  const frameNumber = String(i).padStart(3, "0");
-  img.src = `images/ezgif-frame-${frameNumber}.jpg`;
-  img.onload = () => loadedImages++;
-  images.push(img);
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Segoe UI", sans-serif;
 }
 
-// Draw image centered
-function drawFrame(index) {
-  const img = images[index];
-  if (!img) return;
-
-  const scale = Math.max(
-    canvas.width / img.width,
-    canvas.height / img.height
-  );
-
-  const x = (canvas.width - img.width * scale) / 2;
-  const y = (canvas.height - img.height * scale) / 2;
-
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
-  ctx.drawImage(img, x, y, img.width * scale, img.height * scale);
+body {
+  background: #f5f5f5;
+  color: #222;
 }
 
-// Scroll animation
-window.addEventListener("scroll", () => {
-  if (loadedImages < frameCount) return;
+/* Canvas Background */
+#bgCanvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -1;
+  opacity: 0.18; /* transparency so text is readable */
+}
 
-  const scrollTop = window.scrollY;
-  const maxScroll = document.body.scrollHeight - window.innerHeight;
-  const scrollFraction = scrollTop / maxScroll;
+/* Content */
+.content {
+  max-width: 900px;
+  margin: auto;
+  padding: 80px 20px;
+}
 
-  const frameIndex = Math.min(
-    frameCount - 1,
-    Math.floor(scrollFraction * frameCount)
-  );
+section {
+  margin-bottom: 80px;
+}
 
-  requestAnimationFrame(() => drawFrame(frameIndex));
-});
+.hero {
+  text-align: center;
+  margin-bottom: 100px;
+}
+
+.hero h1 {
+  font-size: 3.2rem;
+  letter-spacing: 2px;
+}
+
+.subtitle {
+  font-size: 1.2rem;
+  color: #666;
+  margin-top: 10px;
+}
+
+h2 {
+  font-size: 1.8rem;
+  margin-bottom: 20px;
+  border-left: 5px solid #c59a6d;
+  padding-left: 15px;
+}
+
+p, li {
+  font-size: 1.05rem;
+  line-height: 1.8;
+}
+
+ul {
+  padding-left: 20px;
+}
